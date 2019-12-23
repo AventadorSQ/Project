@@ -1,4 +1,4 @@
-//
+﻿//
 //  httplib.h
 //
 //  Copyright (c) 2019 Yuji Hirose. All rights reserved.

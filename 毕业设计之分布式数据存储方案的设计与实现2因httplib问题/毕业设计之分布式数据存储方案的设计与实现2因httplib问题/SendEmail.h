@@ -1,4 +1,4 @@
-#ifndef __SMTP_H__ //±ÜÃâÖØ¸´°üº¬
+ï»¿#ifndef __SMTP_H__ //é¿å…é‡å¤åŒ…å«
 #define __SMTP_H__
 
 #include <iostream>
@@ -11,10 +11,10 @@ const int MAX_FILE_LEN = 6000;
 
 static const char base64Char[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-struct FILEINFO /*ÓÃÀ´¼ÇÂ¼ÎÄ¼şµÄÒ»Ğ©ĞÅÏ¢*/
+struct FILEINFO /*ç”¨æ¥è®°å½•æ–‡ä»¶çš„ä¸€äº›ä¿¡æ¯*/
 {
-	char fileName[128]; /*ÎÄ¼şÃû³Æ*/
-	char filePath[256]; /*ÎÄ¼ş¾ø¶ÔÂ·¾¶*/
+	char fileName[128]; /*æ–‡ä»¶åç§°*/
+	char filePath[256]; /*æ–‡ä»¶ç»å¯¹è·¯å¾„*/
 };
 
 class CSmtp
@@ -23,12 +23,12 @@ public:
 	CSmtp(void);
 	CSmtp(
 		int port,
-		string srvDomain,	//smtp·şÎñÆ÷ÓòÃû
-		string userName,	//ÓÃ»§Ãû
-		string password,	//ÃÜÂë
-		string targetEmail, //Ä¿µÄÓÊ¼şµØÖ·
-		string emailTitle,  //Ö÷Ìâ
-		string content       //ÄÚÈİ
+		string srvDomain,	//smtpæœåŠ¡å™¨åŸŸå
+		string userName,	//ç”¨æˆ·å
+		string password,	//å¯†ç 
+		string targetEmail, //ç›®çš„é‚®ä»¶åœ°å€
+		string emailTitle,  //ä¸»é¢˜
+		string content       //å†…å®¹
 	);
 public:
 	~CSmtp(void);
@@ -41,30 +41,30 @@ public:
 	string targetAddr;
 	string title;
 	string content;
-	/*ÎªÁË·½±ãÌí¼ÓÎÄ¼ş£¬É¾³ıÎÄ¼şÉñÂíµÄ£¬Ê¹ÓÃlistÈİÆ÷×îÎª·½±ã£¬ÏàĞÅ´ó¼ÒÔÚÊı¾İ½á¹¹ÀïÃæ¶¼Ñ§¹ı*/
+	/*ä¸ºäº†æ–¹ä¾¿æ·»åŠ æ–‡ä»¶ï¼Œåˆ é™¤æ–‡ä»¶ç¥é©¬çš„ï¼Œä½¿ç”¨listå®¹å™¨æœ€ä¸ºæ–¹ä¾¿ï¼Œç›¸ä¿¡å¤§å®¶åœ¨æ•°æ®ç»“æ„é‡Œé¢éƒ½å­¦è¿‡*/
 	list <FILEINFO *> listFile;
 
 public:
 	char buff[MAXLEN + 1];
 	int buffLen;
-	SOCKET sockClient;	//¿Í»§¶ËµÄÌ×½Ó×Ö
+	SOCKET sockClient;	//å®¢æˆ·ç«¯çš„å¥—æ¥å­—
 public:
-	bool CreateConn(); /*´´½¨Á¬½Ó*/
+	bool CreateConn(); /*åˆ›å»ºè¿æ¥*/
 
 	bool Send(string &message);
 	bool Recv();
 
-	void FormatEmailHead(string &email);//¸ñÊ½»¯Òª·¢ËÍµÄÓÊ¼şÍ·²¿
+	void FormatEmailHead(string &email);//æ ¼å¼åŒ–è¦å‘é€çš„é‚®ä»¶å¤´éƒ¨
 	int Login();
-	bool SendEmailHead();		//·¢ËÍÓÊ¼şÍ·²¿ĞÅÏ¢
-	bool SendTextBody();	    //·¢ËÍÎÄ±¾ĞÅÏ¢
-								//bool SendAttachment();	    //·¢ËÍ¸½¼ş
+	bool SendEmailHead();		//å‘é€é‚®ä»¶å¤´éƒ¨ä¿¡æ¯
+	bool SendTextBody();	    //å‘é€æ–‡æœ¬ä¿¡æ¯
+								//bool SendAttachment();	    //å‘é€é™„ä»¶
 	int SendAttachment_Ex();
 	bool SendEnd();
 public:
-	void AddAttachment(string &filePath); //Ìí¼Ó¸½¼ş
-	void DeleteAttachment(string &filePath); //É¾³ı¸½¼ş
-	void DeleteAllAttachment(); //É¾³ıËùÓĞµÄ¸½¼ş
+	void AddAttachment(string &filePath); //æ·»åŠ é™„ä»¶
+	void DeleteAttachment(string &filePath); //åˆ é™¤é™„ä»¶
+	void DeleteAllAttachment(); //åˆ é™¤æ‰€æœ‰çš„é™„ä»¶
 
 	void SetSrvDomain(string &domain);
 	void SetUserName(string &user);
@@ -74,7 +74,7 @@ public:
 	void SetContent(string &content);
 	void SetPort(int port);
 	int SendEmail_Ex();
-	/*¹ØÓÚ´íÎóÂëµÄËµÃ÷:1.ÍøÂç´íÎóµ¼ÖÂµÄ´íÎó2.ÓÃ»§Ãû´íÎó3.ÃÜÂë´íÎó4.ÎÄ¼ş²»´æÔÚ0.³É¹¦*/
+	/*å…³äºé”™è¯¯ç çš„è¯´æ˜:1.ç½‘ç»œé”™è¯¯å¯¼è‡´çš„é”™è¯¯2.ç”¨æˆ·åé”™è¯¯3.å¯†ç é”™è¯¯4.æ–‡ä»¶ä¸å­˜åœ¨0.æˆåŠŸ*/
 	char* base64Encode(char const* origSigned, unsigned origLength);
 };
 
